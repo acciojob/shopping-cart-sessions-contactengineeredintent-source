@@ -12,7 +12,7 @@ const products = [
 // DOM elements
 const productList = document.getElementById("product-list");
 const cartList = document.querySelector("#cart-list");
-let cartArray = [];
+let cartArray = JSON.parse(sessionStorage.getItem("productArray")) || [];
 
 // Render product list
 function renderProducts() {
@@ -64,7 +64,7 @@ function addToCart(productId) {
 // Remove item from cart
 function removeFromCart(productId) {
   let productArray = JSON.parse(sessionStorage.getItem("productArray"));
-  productArray = productArray.filter((product)=>{
+  productArray = productArray.filter((product) => {
     return product.id != productId;
   });
   sessionStorage.clear();
