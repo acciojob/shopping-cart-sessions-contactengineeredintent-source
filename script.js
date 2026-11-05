@@ -12,7 +12,7 @@ const products = [
 // DOM elements
 const productList = document.getElementById("product-list");
 const cartList = document.querySelector("#cart-list");
-let cartArray = JSON.parse(sessionStorage.getItem("productArray")) || [];
+let cartArray = JSON.parse(sessionStorage.getItem("cartArray")) || [];
 
 // Render product list
 function renderProducts() {
@@ -36,11 +36,11 @@ function renderProducts() {
 // Render cart list
 function renderCart() {
   cartList.innerHTML = "";
-  let productArray = JSON.parse(sessionStorage.getItem("productArray"));
-  if (productArray === null) {
+  // let cartArray = JSON.parse(sessionStorage.getItem("cartArray"));
+  if (cartArray === null) {
     return;
   } else {
-    productArray.forEach((product) => {
+    cartArray.forEach((product) => {
       const li = document.createElement("li");
       li.classList.add("mb-2");
       li.innerHTML = `${product.name} - ${product.price} <button class="remove-from-cart-btn btn btn-primary" data-id="${product.id}">Remove From Cart</button>`;
@@ -57,18 +57,18 @@ function addToCart(productId) {
     }
   });
   // sessionStorage.clear();
-  sessionStorage.setItem("productArray", JSON.stringify(cartArray));
+  sessionStorage.setItem("cartArray", JSON.stringify(cartArray));
   renderCart();
 }
 
 // Remove item from cart
 function removeFromCart(productId) {
-  // let productArray = JSON.parse(sessionStorage.getItem("productArray"));
+  // let cartArray = JSON.parse(sessionStorage.getItem("cartArray"));
   cartArray = cartArray.filter((product) => {
     return product.id != productId;
   });
   // sessionStorage.clear();
-  sessionStorage.setItem("productArray", JSON.stringify(cartArray));
+  sessionStorage.setItem("cartArray", JSON.stringify(cartArray));
   renderCart();
 }
 cartList.addEventListener("click", (e) => {
@@ -79,7 +79,7 @@ cartList.addEventListener("click", (e) => {
 
 // Clear cart
 function clearCart() {
-  sessionStorage.clear();
+  sessionStorage.setItem("cartArray", JSON.stringify([]));
   renderCart();
 }
 document.querySelector("#clear-cart-btn").addEventListener("click", (e) => {
