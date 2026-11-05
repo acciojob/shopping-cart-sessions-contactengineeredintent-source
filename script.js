@@ -37,16 +37,13 @@ function renderProducts() {
 function renderCart() {
   cartList.innerHTML = "";
   // let cartArray = JSON.parse(sessionStorage.getItem("cartArray"));
-  if (cartArray === null) {
-    return;
-  } else {
-    cartArray.forEach((product) => {
-      const li = document.createElement("li");
-      li.classList.add("mb-2");
-      li.innerHTML = `${product.name} - ${product.price} <button class="remove-from-cart-btn btn btn-primary" data-id="${product.id}">Remove From Cart</button>`;
-      cartList.appendChild(li);
-    });
-  }
+
+  cartArray.forEach((product) => {
+    const li = document.createElement("li");
+    li.classList.add("mb-2");
+    li.innerHTML = `${product.name} - ${product.price} <button class="remove-from-cart-btn btn btn-primary" data-id="${product.id}">Remove From Cart</button>`;
+    cartList.appendChild(li);
+  });
 }
 
 // Add item to cart
