@@ -67,7 +67,7 @@ function removeFromCart(productId) {
   cartArray = cartArray.filter((product) => {
     return product.id != productId;
   });
-  sessionStorage.clear();
+  // sessionStorage.clear();
   sessionStorage.setItem("productArray", JSON.stringify(cartArray));
   renderCart();
 }
