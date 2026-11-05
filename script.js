@@ -56,19 +56,19 @@ function addToCart(productId) {
       cartArray.push(product);
     }
   });
-  sessionStorage.clear();
+  // sessionStorage.clear();
   sessionStorage.setItem("productArray", JSON.stringify(cartArray));
   renderCart();
 }
 
 // Remove item from cart
 function removeFromCart(productId) {
-  let productArray = JSON.parse(sessionStorage.getItem("productArray"));
-  productArray = productArray.filter((product) => {
+  // let productArray = JSON.parse(sessionStorage.getItem("productArray"));
+  cartArray = cartArray.filter((product) => {
     return product.id != productId;
   });
   sessionStorage.clear();
-  sessionStorage.setItem("productArray", JSON.stringify(productArray));
+  sessionStorage.setItem("productArray", JSON.stringify(cartArray));
   renderCart();
 }
 cartList.addEventListener("click", (e) => {
